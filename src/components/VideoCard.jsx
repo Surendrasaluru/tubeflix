@@ -15,13 +15,13 @@ const VideoCard = ({ info }) => {
   const { duration } = contentDetails;
 
   return (
-    <div className="flex flex-col gap-2 cursor-pointer group max-w-96 rounded-b-sm hover:bg-gray-900 ">
+    <div className="flex flex-col gap-2 cursor-pointer group max-w-full rounded-b-sm hover:bg-gray-900 ">
       {/* Thumbnail */}
       <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-100">
         <img
           src={thumbnails.medium.url}
           alt={title}
-          className="object-cover group-hover:scale-105 transition-transform duration-200"
+          className="object-cover group-hover:scale-105 w-full h-full bg-zinc-900 transition-transform duration-200"
         />
         <div className="absolute bottom-2 right-2 bg-black/80 text-white hover:text-black text-[11px] font-bold px-1.5 py-0.5 rounded">
           {dayjs.duration(duration).format("m:ss")}

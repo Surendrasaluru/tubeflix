@@ -30,7 +30,7 @@ const Sidebar = () => {
 
     { icon: <FaChildren size={22} />, label: "TubeFlix Kids" },
     { icon: <FaMusic size={22} />, label: "TubeFlix Music" },
-    { icon: <FaMessage size={22} />, label: "Reach Me" },
+    { icon: <FaMessage size={22} />, label: "ReachMe" },
     {
       icon: <FaPlus size={22} />,
       label: "TubeFlix Plus",
@@ -38,10 +38,10 @@ const Sidebar = () => {
   ];
   if (!isMenuOpen) return null;
   return (
-    <div className="shadow-lg col-span-1">
-      <aside className="bg-[#0f0f0f] text-white h-screen transition-all duration-300 p-2 pt-4 ">
+    <div className="border-r border-white/5 bg-[#0f0f0f] h-full col-span-1 lg:col-span-2">
+      <aside className="bg-[#0f0f0f] text-white transition-all duration-300 p-2 pt-4 ">
         {/* Hamburger Menu Trigger */}
-        <div className="flex items-center px-3 mb-6">
+        <div className="flex items-center px-3 mb-6 shrink-0">
           <Link to="/">
             {" "}
             <button className="p-2 hover:bg-[#272727] rounded-full transition-colors">
@@ -57,8 +57,9 @@ const Sidebar = () => {
         {/* Navigation Links */}
         <nav className="flex flex-col gap-1">
           {menuItems.map((item, index) => (
-            <button
+            <Link
               key={index}
+              to={item.path || `/${item.label.toLowerCase()}`}
               className="flex items-center p-3 rounded-xl hover:bg-[#272727] transition-colors"
             >
               <div className="shrink-0">{item.icon}</div>
@@ -66,7 +67,7 @@ const Sidebar = () => {
               <span className="ml-5 text-sm font-medium whitespace-nowrap overflow-hidden">
                 {item.label}
               </span>
-            </button>
+            </Link>
           ))}
         </nav>
       </aside>
