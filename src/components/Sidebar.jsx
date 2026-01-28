@@ -25,15 +25,13 @@ const Sidebar = () => {
     { icon: <FaHome size={22} />, label: "Home" },
     { icon: <FaPlayCircle size={22} />, label: "Shorts" },
     { icon: <FaVideo size={22} />, label: "Subscriptions" },
-    { icon: <FaClock size={22} />, label: "History" },
-    { icon: <FaThumbsUp size={22} />, label: "Liked Videos" },
 
-    { icon: <FaChildren size={22} />, label: "TubeFlix Kids" },
-    { icon: <FaMusic size={22} />, label: "TubeFlix Music" },
+    { icon: <FaChildren size={22} />, label: "Kids" },
+    { icon: <FaMusic size={22} />, label: "Music" },
     { icon: <FaMessage size={22} />, label: "ReachMe" },
     {
       icon: <FaPlus size={22} />,
-      label: "TubeFlix Plus",
+      label: "Plus",
     },
   ];
   if (!isMenuOpen) return null;
@@ -42,7 +40,7 @@ const Sidebar = () => {
       <aside className="bg-[#0f0f0f] text-white transition-all duration-300 p-2 pt-4 ">
         {/* Hamburger Menu Trigger */}
         <div className="flex items-center px-3 mb-6 shrink-0">
-          <Link to="/">
+          <Link to="/home">
             {" "}
             <button className="p-2 hover:bg-[#272727] rounded-full transition-colors">
               <FaYoutube size={24} />

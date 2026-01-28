@@ -6,6 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import VideoContainer from "./components/VideoContainer";
 import WatchPage from "./components/WatchPage";
 import ReachMe from "./components/ReachMe";
+import ShortPage from "./components/ShortPage";
+import MusicPage from "./components/MusicPage";
+import KidsPage from "./components/KidsPage";
 
 const appRouter = createBrowserRouter([
   {
@@ -13,7 +16,7 @@ const appRouter = createBrowserRouter([
     element: <Body />,
     children: [
       {
-        path: "/",
+        path: "/home",
         element: <VideoContainer />,
       },
       {
@@ -23,6 +26,18 @@ const appRouter = createBrowserRouter([
       {
         path: "reachme",
         element: <ReachMe />,
+      },
+      {
+        path: "shorts",
+        element: <ShortPage />,
+      },
+      {
+        path: "music",
+        element: <MusicPage />,
+      },
+      {
+        path: "kids",
+        element: <KidsPage />,
       },
     ],
   },
