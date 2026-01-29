@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { APIKEY } from "../utils/constants";
 import { FaThumbsUp } from "react-icons/fa";
 import Comment from "./Comment";
+import FullPageLoader from "./FullPageLoader";
 
 const WatchPage = () => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
@@ -10,6 +11,7 @@ const WatchPage = () => {
   //console.log(searchParams.get("v"));
   const [videoData, setVideoData] = useState([]);
   const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const SINGLE_VIDEO_API =
     "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=" +
     searchParams.get("v") +
@@ -28,7 +30,12 @@ const WatchPage = () => {
 
         const json = await data.json();
         setVideoData(json.items[0]);
-        console.log(json.items[0]);
+        //console.log(json.items[0]);
+        const timer = setTimeout(() => {
+          setIsLoading(false);
+        }, 6000);
+
+        return () => clearTimeout(timer);
       } catch (error) {
         console.error("failed to fetch video data", error);
       }
@@ -50,8 +57,8 @@ const WatchPage = () => {
     getCommentsData();
   }, []);
 
-  if (videoData.length === 0) return <h2>Video is on the way</h2>;
-  if (comments.length === 0) return <h2>loading</h2>;
+  if ((videoData.length === 0) & (comments.length === 0))
+    return <FullPageLoader />;
 
   const { snippet, statistics } = videoData;
   const { channelTitle, title, description } = snippet;

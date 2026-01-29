@@ -2,9 +2,21 @@ import React, { useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 import { VIDEOAPI } from "../utils/constants";
 import { Link } from "react-router-dom";
+import FullPageLoader from "./FullPageLoader";
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // 1. You can fetch your API data here
+    // 2. We set a timer to keep the loader for 3 seconds (3000ms)
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer); // Cleanup the timer
+  }, []);
 
   useEffect(() => {
     const getVideos = async () => {
@@ -18,9 +30,16 @@ const VideoContainer = () => {
       }
     };
     getVideos();
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 6000);
+
+    return () => clearTimeout(timer); // Cleanup the timer
   }, []);
 
-  if (videos.length == 0) return <h1>Loading....</h1>;
+  if (videos.length == 0 && isLoading) {
+    return <FullPageLoader />;
+  }
 
   return (
     <div className="col-span-10">

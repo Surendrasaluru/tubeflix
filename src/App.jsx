@@ -9,6 +9,7 @@ import ReachMe from "./components/ReachMe";
 import ShortPage from "./components/ShortPage";
 import MusicPage from "./components/MusicPage";
 import KidsPage from "./components/KidsPage";
+import Plus from "./components/Plus";
 
 const appRouter = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const appRouter = createBrowserRouter([
       {
         path: "kids",
         element: <KidsPage />,
+      },
+      {
+        path: "plus",
+        element: <Plus />,
       },
     ],
   },
